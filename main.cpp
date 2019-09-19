@@ -2,13 +2,14 @@
 #include <array>
 
 using namespace std;
-int sort(int list[], int small, int iter, int length);
+int findsmall(int list[], int small, int iter, int length);
 
 int main() {
     cout << "Hello, User!" << endl;
-    int list[6] = {5,2,10,11,3,13};
+    int list[] = {5,2,10,11,3,13,1,-5};
     int small = list[0];
-    int smallest = findsmall(list, small, 0, 6);
+    int size = *(&list + 1) - list;
+    int smallest = findsmall(list, small, 0, size);
     cout << "Smallest number: " << smallest << endl;
     return 0;
 }
@@ -20,8 +21,8 @@ int findsmall(int list[], int small, int iter, int length){
         return small;
     else if(list[iter] < small){
         small = list[iter];
-        return findsmall(list, small, iter+1, 6);
+        return findsmall(list, small, iter+1, length);
     }
     else
-        return findsmall(list, small, iter+1, 6);
+        return findsmall(list, small, iter+1, length);
 }
